@@ -1,24 +1,15 @@
 import { useState } from "react";
 import { Assignment } from "../Assignment";
 import styles from "./assignments.module.css";
+import IAssignment from "../../interfaces/IAssignment";
 
 interface Props {
-  assignments: string[]
-  setAssignments: (assignments: string[]) => void;
+  assignments: IAssignment[]
+  deleteAssignment: (title:string) => void
 }
 
-export function Assignments({assignments, setAssignments}: Props) {
-  const [completedAssignments, setCompletedAssignments] = useState(0)
-  const getAssignments = (assignments: string[]) => {
-    if(assignments[0]=== '') {
-      assignments.shift()
-    }
-    return (
-      assignments.map((title) => (
-          <Assignment title={title} completedAssignments={completedAssignments} setCompletedAssignments={setCompletedAssignments} assignments={assignments} setAssignments={setAssignments}/>
-      )))
-    
-}
+export function Assignments({assignments, deleteAssignment}: Props) {
+  const [numberCompletedAssignments, setNumberCompletedAssignments] = useState(0)
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
@@ -29,12 +20,14 @@ export function Assignments({assignments, setAssignments}: Props) {
 
         <div>
           <p className={styles.textPurple}>Completed Assignments</p>
-          <span>{completedAssignments} of {assignments.length}</span>
+          <span>{numberCompletedAssignments} of {assignments.length}</span>
         </div>
       </header>
 
       <div className={styles.list}>
-        {getAssignments(assignments)}
+        {assignments.map(a => (
+          <Assignment numberCompletedAssignments={numberCompletedAssignments} setNumberCompletedAssignments={setNumberCompletedAssignments} assignment={a} title={a.title} completed={a.completed} deleteAssignment={deleteAssignment}/>
+        ))}
         
       </div>
     </section>

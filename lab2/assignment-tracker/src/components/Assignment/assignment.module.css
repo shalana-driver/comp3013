@@ -47,3 +47,29 @@ p.textCompleted {
   border: none;
   color: #808080;
 }
+
+.assignmentDetails {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.assignmentDetailsChild {
+  background: #464646;
+  color: #d9d9d9;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.assignmentDetailsChildTomorrow {
+  background: #ff4646;
+  color: #d9d9d9;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
